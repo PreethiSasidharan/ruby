@@ -17,16 +17,16 @@ class RubySDKHelloWorldPluginApp < AppAbstract
         @project = appContext.get_data('project')
         
         logInit(@log_level)
-        log("info", "initializeApp is invoked in RubySDK_HelloWorld_plugin App")     
+        log("info", "initializeApp is invoked in ruby App")     
     end
 
     def process()
-        log("info", "process is invoked in RubySDK_HelloWorld_plugin App")
+        log("info", "process is invoked in ruby App")
         saveGreetingMessage(@greeting_param.to_json)
     end  
 
     def saveGreetingMessage(message)
-        log("info", "saveGreetingMessage is invoked in RubySDK_HelloWorld_plugin App")
+        log("info", "saveGreetingMessage is invoked in ruby App")
         log("debug", message)
         # the result_array needs to be stored into CMDB
         # updateCustomContext()
@@ -37,7 +37,7 @@ class RubySDKHelloWorldPluginApp < AppAbstract
             "domain" => @domain,
             "project" => @project,
             "job" => @jobname,
-            "context" => “greeting”,
+            "context" => @greeting_param,
             "id" => @id,
             "data" => message
         }
@@ -46,12 +46,12 @@ class RubySDKHelloWorldPluginApp < AppAbstract
     end 
 
     def cleanupApp()
-        log("info", "cleanupApp is invoked in RubySDK_HelloWorld_plugin App")
+        log("info", "cleanupApp is invoked in ruby App")
         logClose()
     end
 
 
 end
 
-helloWorldPlugin = RubySDKHelloWorldPluginApp.new()
+helloWorldPlugin = ruby.new()
 helloWorldPlugin.start()
